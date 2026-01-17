@@ -1,0 +1,43 @@
+<script>
+/* Smooth Scroll for Internal Links */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+/* Sticky Header Effect */
+const header = document.querySelector("header");
+window.addEventListener("scroll", function () {
+    if (window.scrollY > 80) {
+        header.style.padding = "25px 20px";
+    } else {
+        header.style.padding = "60px 20px";
+    }
+});
+
+/* WhatsApp Button Smart Visibility */
+const whatsappBtn = document.querySelector(".whatsapp-btn");
+let lastScrollTop = 0;
+
+window.addEventListener("scroll", function () {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop) {
+        whatsappBtn.style.transform = "scale(1)";
+    } else {
+        whatsappBtn.style.transform = "scale(0.85)";
+    }
+    lastScrollTop = scrollTop;
+});
+
+/* Click Tracking (Ready for Google Analytics Later) */
+document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function () {
+        console.log("User clicked:", this.href);
+    });
+});
+
+/*
